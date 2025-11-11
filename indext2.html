@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Dev Hub</title>
+    <!-- تضمين مكتبة Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* التنسيقات العامة */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: right; /* محاذاة النص الافتراضية لليمين */
+        }
+        
+        /* التنسيق المشترك للحاويات الرئيسية (لتوسيط المحتوى) */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 1. قسم البداية (Hero Section) */
+        .hero-section {
+            background-color: #00aa2b; /* اللون البنفسجي الذي استخدمته */
+            color: #fdf8f8;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .hero-button {
+            background-color: rgb(224, 220, 8); /* الأصفر */
+            color: #00aa2b; /* النص بنفسجي */
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .hero-button:hover {
+            background-color: rgb(255, 255, 0);
+        }
+
+        /* 2. قسم العناوين والخطوط */
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-header h1 {
+            color: #00aa2b;
+            margin-bottom: 10px;
+        }
+        .section-header .divider {
+            height: 4px;
+            width: 70px;
+            background-color: rgb(224, 220, 8);
+            margin: 0 auto 20px; /* لتوسيط الخط الفاصل */
+        }
+
+        /* 3. قسم البطاقات (Why Choose Us) - استخدام Flexbox للتجاوبية */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch; /* لجعل البطاقات بنفس الارتفاع */
+            gap: 25px;
+            flex-wrap: wrap; /* للسماح للبطاقات بالنزول لأسفل في شاشات الموبايل */
+        }
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%; /* العرض الكامل للموبايل */
+            max-width: 300px; /* تحديد أقصى عرض للديسكتوب */
+            text-align: center;
+            padding: 30px 20px;
+            transition: transform 0.3s;
+        }
+        @media (max-width: 768px) {
+             .card {
+                max-width: none;
+                margin-bottom: 15px;
+            }
+        }
+        .card:hover {
+            transform: translateY(-8px);
+        }
+        .card i {
+            font-size: 40px;
+            color: #00aa2b;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            color: #00aa2b;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* 4. قسم خطة الأسعار (Pricing Plan) */
+        .pricing-section {
+            background-color: #00aa2b;
+        }
+        .pricing-card-wrapper {
+             display: flex;
+             justify-content: center;
+        }
+        .pricing-card {
+            max-width: 300px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .pricing-card h1 {
+            color: #00aa2b;
+            font-size: 2.5rem;
+            margin: 10px 0;
+        }
+        .pricing-card p {
+            margin: 8px 0;
+        }
+        .pricing-card .yu { /* زر التعلم */
+            background-color: #555;
+            color: #efeded;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .pricing-card .yu:hover {
+            background-color: #333;
+        }
+        
+        /* 5. قسم الاتصال (Contact Form) - تم تعديل التنسيقات لتبدو أفضل */
+        .contact-form-wrapper {
+             display: flex;
+             justify-content: center;
+        }
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px; /* لتحديد عرض النموذج */
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #00aa2b;
+        }
+        .contact-form textarea {
+            resize: vertical;
+        }
+        .send-button {
+            background-color: #ffc107;
+            color: black;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .send-button:hover {
+            background-color: #e0a800;
+        }
+        
+        /* 6. قسم التذييل (Footer) */
+        .footer-section {
+            background-color: #00aa2b;
+            color: #fdf8f8;
+            padding: 15px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- 1. قسم البداية (Hero Section) -->
+    <div class="hero-section">
+        <div class="section-container">
+            <h1>Frontend Dev Hub</h1>
+            <p> Master the art of web interfaces with our comprehensive resources.</p>
+            <button class="hero-button" onclick="window.open('https://github.com/7amdhjaze','_blank')">Get Started now</button>
+        </div>
+    </div>
+
+    <!-- 2. قسم "لماذا تختارنا؟" -->
+    <div class="section-container">
+        <div class="section-header">
+            <h1 class="kk">Why Choose Frontend Dev Hub?</h1> 
+            <hr class="divider"> 
+        </div>
+        
+        <!-- حاوية البطاقات -->
+        <div class="cards-container">
+            <!-- البطاقة 1 -->
+            <div class="card">
+                <i class="fas fa-code"></i>
+                <h3>Clean Code</h3>
+                <p>Learn to write efficient, maintainable, and readable code.</p>
+            </div>
+
+            <!-- البطاقة 2 -->
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Responsive Design</h3>
+                <p>Build websites that look great on any device, big or small.</p>
+            </div>
+
+            <!-- البطاقة 3 -->
+            <div class="card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Modern UI/UX</h3>
+                <p>Discover principles for creating engaging and user-friendly interfaces.</p>
+            </div>
+        </div>
+    </div> 
+
+    <!-- 3. قسم خطة الأسعار (Pricing Plan) -->
+    <div class="pricing-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h1 style="color: white;">Our Plan</h1> 
+                <hr class="divider"> 
+            </div>
+            
+            <div class="pricing-card-wrapper">
+                <div class="pricing-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Free Access</h3>
+                    <h1>$0/month</h1>
+                    <p>Access to all tutorials</p>
+                    <p>Community support</p>
+                    <p>Basic project templates</p>
+                    <button class="yu" onclick="window.open('https://github.com/7amdhjaze','_blank')">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 4. قسم الاتصال بنا (Get in Touch) -->
+    <div class="section-container">
+        <div class="section-header">
+            <h1>Get in Touch</h1>
+            <hr class="divider"> 
+        </div>
+        
+        <div class="contact-form-wrapper">
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="your Name">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="your Email">
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="5" placeholder="Message"></textarea>
+                </div>
+                <button type="submit" class="send-button">Send Message</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 5. التذييل (Footer) -->
+    <div class="footer-section">
+        <p>© Developed by hamed  </p>
+    </div>
+
+</body>
+</html>
